@@ -34,8 +34,14 @@
                     <textarea id="message" name="message" rows="5" placeholder="Ваші побажання або запитання..." required></textarea>
                 </div>
                 <div class="form-group form-group-checkbox">
-                    <input type="checkbox" id="consent" name="consent" required>
+                    <input type="checkbox" id="consent" name="consent" value="1" required>
                     <label for="consent">Надаю згоду на використання та поширення особистих даних.</label>
+                </div>
+
+                <!-- Honeypot: приховане поле-пастка для спам-ботів; людина його не бачить і не заповнює -->
+                <div class="form-group form-group-website" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                 </div>
                 
                 <div class="form-group captcha-group">

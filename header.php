@@ -11,12 +11,12 @@
     <meta property="og:url" content="<?php echo isset($pageUrl) ? htmlspecialchars($pageUrl) : 'https://ternopil.fm/'; ?>">
     <meta property="og:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'ТРК "Тернопільська хвиля"'; ?>">
     <meta property="og:description" content="<?php echo isset($pageDescription) ? htmlspecialchars($pageDescription) : ''; ?>">
-    <meta property="og:image" content="https://ternopil.fm/images/og-image.png">
+    <meta property="og:image" content="https://ternopil.fm/images/og-image.jpg">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<?php echo isset($pageUrl) ? htmlspecialchars($pageUrl) : 'https://ternopil.fm/'; ?>">
     <meta property="twitter:title" content="<?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) : 'ТРК "Тернопільська хвиля"'; ?>">
     <meta property="twitter:description" content="<?php echo isset($pageDescription) ? htmlspecialchars($pageDescription) : ''; ?>">
-    <meta property="twitter:image" content="https://ternopil.fm/images/og-image.png">
+    <meta property="twitter:image" content="https://ternopil.fm/images/og-image.jpg">
 
     <link rel="icon" href="icons/icon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
@@ -34,7 +34,7 @@
     <header class="site-header">
         <div class="container header-content">
             <div class="logo">
-                <a href="/"><img src="images/logo.png" alt="Логотип"></a>
+                <a href="/"><img src="images/logo.png" alt="ТРК Тернопільська хвиля" width="692" height="150"></a>
             </div>
             <nav class="main-nav" id="main-nav">
                 <ul>

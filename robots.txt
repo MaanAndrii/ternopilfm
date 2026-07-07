@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /send_email.php
+Disallow: /captcha.php
+
+Sitemap: https://ternopil.fm/sitemap.xml

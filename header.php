@@ -19,7 +19,8 @@
     <meta property="twitter:image" content="https://ternopil.fm/images/og-image.jpg">
 
     <link rel="icon" href="icons/icon.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Версіонування через filemtime: після зміни файлу браузери одразу тягнуть свіжу версію -->
+    <link rel="stylesheet" href="styles.css?v=<?php echo filemtime(__DIR__ . '/styles.css'); ?>">
 </head>
 <body>
 

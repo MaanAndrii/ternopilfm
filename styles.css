@@ -1,0 +1,466 @@
+/* --- CSS-змінні --- */
+:root {
+    --primary-color: #B4020A;
+    --primary-color-hover: #d1000c;
+    --dark-color: #000;
+    --light-color: #fff;
+    --text-color: #333;
+    --font-primary: 'Josefin Sans', sans-serif;
+    --font-secondary: Arial, sans-serif;
+}
+
+/* --- Імпорт шрифту --- */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+/* --- Загальні стилі --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-secondary);
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Хедер --- */
+.site-header {
+    background-color: var(--primary-color);
+    padding: 10px 0;
+    color: var(--light-color);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.logo {
+    width: 320px; /* Встановлюємо ширину, як у плеєра */
+    display: flex;
+    justify-content: center; /* Центруємо логотип всередині цього блоку */
+}
+
+
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.main-nav a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-size: 17.6px;
+    font-weight: bold;
+    padding: 16px;
+    display: block;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+/* --- Основна частина --- */
+.main-content-wrapper {
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 80vh;
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+.player-iframe {
+    width: 320px;
+    height: 500px;
+    border: none;
+    box-shadow: none;
+    border-radius: 8px;
+    display: block;
+}
+
+/* --- Футер --- */
+.footer-top {
+    background-color: var(--light-color);
+    padding: 40px 0;
+}
+
+.footer-top-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.footer-column h2 {
+    margin-top: 0;
+    color: var(--dark-color);
+    font-size: 22px;
+}
+
+.footer-column p {
+    margin: 0 0 10px 0;
+    line-height: 1.8;
+}
+
+.footer-column a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.footer-phones {
+    text-align: center;
+}
+
+.footer-contacts {
+    text-align: right;
+}
+
+.footer-bottom {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px 20px;
+    border-radius: 8px;
+}
+
+.footer-bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    align-items: center;
+}
+
+.footer-bottom-grid p,
+.footer-bottom-grid a {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.footer-bottom-grid a:hover {
+    color: var(--light-color);
+}
+
+.footer-docs {
+    text-align: right;
+}
+
+.google-map {
+    border: 0;
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* --- Плаваючі іконки та кнопка "Вгору" --- */
+.social-bar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    background-color: var(--primary-color);
+    margin-bottom: 5px;
+    border-radius: 5px 0 0 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    right: 0;
+}
+
+.social-icon:hover {
+    background-color: var(--primary-color-hover);
+    right: 5px;
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Меню-бургер (приховане на десктопі) --- */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.burger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* --- Адаптивність --- */
+@media (max-width: 1200px) {
+    .footer-bottom {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        position: relative;
+    }
+
+    .main-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav a {
+        font-size: 24px;
+        padding: 20px;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .footer-top-grid,
+    .footer-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-phones,
+    .footer-contacts,
+    .footer-docs {
+        text-align: left;
+    }
+
+    .footer-bottom {
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0;
+    }
+}
+
+/* ================== СТИЛІ ДЛЯ СТОРІНКИ КОНТАКТІВ ================== */
+.contact-page-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.contact-info h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: var(--primary-color);
+}
+.contact-info p {
+    line-height: 1.8;
+    font-size: 16px;
+}
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.contact-info a:hover {
+    text-decoration: underline;
+}
+.contact-map .google-map {
+    height: 100%;
+    min-height: 450px;
+}
+
+/* ================== ДОДАНО: СТИЛІ ДЛЯ ФОРМИ ЗВОРОТНОГО ЗВ'ЯЗКУ ================== */
+.feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+}
+
+.feedback-form h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: var(--font-secondary);
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-group-checkbox input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-color-hover);
+}
+
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    /* ... (попередній код в медіа-запитах) ... */
+    
+    .contact-page-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feedback-form {
+        padding: 20px;
+    }
+}
+
+/* ================== ДОДАНО: СТИЛІ ДЛЯ СТАТУСУ ФОРМИ ================== */
+.form-status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-status.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

@@ -1,0 +1,21 @@
+{
+    "name": "mRPlayer",
+    "short_name": "mRPlayer",
+    "description": "Онлайн радіо-плеєр",
+    "start_url": "/mrplayer/",
+    "display": "standalone",
+    "background_color": "#1e293b",
+    "theme_color": "#B4020A",
+    "icons": [
+        {
+            "src": "/mrplayer/icons/icon-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/mrplayer/icons/icon-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

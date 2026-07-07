@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mRPlayer</title>
+  
+  <link rel="manifest" href="manifest.json">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+</head>
+<body>
+
+  <div class="radio-player">
+    
+    <div class="station-selector">
+      <button id="prevStationBtn" class="station-nav-btn" aria-label="Previous Station">◀</button>
+      <h1 class="station-name" id="stationName"></h1>
+      <button id="nextStationBtn" class="station-nav-btn" aria-label="Next Station">▶</button>
+    </div>
+    
+    <div class="visualizer" id="visualizer">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    
+    <div class="controls">
+      <button class="play-btn" id="playBtn" aria-label="Play/Pause">
+        <svg id="playIcon" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none;">
+          <path d="M6 19h4V5H6zm8-14v14h4V5z"></path>
+        </svg>
+        <div class="loader" id="loader"></div>
+      </button>
+      
+      <p class="status-message" id="statusMessage">Натисніть Play для запуску</p>
+
+      <div class="quality-buttons">
+        <button class="quality-btn active" id="qualitySD" aria-label="Standard Quality">SD</button>
+        <button class="quality-btn" id="qualityHD" aria-label="High Quality">HD</button>
+      </div>
+      
+      <div class="volume-control">
+        <div id="muteBtn" aria-label="Mute/Unmute">
+            <svg class="volume-icon" id="volumeOnIcon" viewBox="0 0 24 24">
+              <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            </svg>
+            <svg class="volume-icon" id="volumeMutedIcon" style="display: none;" viewBox="0 0 24 24">
+              <path d="M11 5L6 9H2v6h4l5 4V5zm10.59 4.41L19.17 12l2.42 2.41-1.42 1.42L17.75 13.41l-2.42 2.42-1.42-1.42L16.33 12l-2.42-2.41 1.42-1.42L17.75 10.59l2.42-2.42 1.42 1.42z"/>
+            </svg>
+        </div>
+        
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume">
+        
+        <svg class="volume-icon" id="volumeUpIcon" viewBox="0 0 24 24" aria-label="Volume Up">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="player.js" defer></script>
+  
+</body>
+</html>

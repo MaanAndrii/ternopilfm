@@ -1,0 +1,19 @@
+---
+deployment:
+  tasks:
+    # Шлях до публічної директорії сайту (перевірте, що ім'я користувача правильне)
+    - export DEPLOYPATH=/home/prywjosy/public_html
+
+    # PHP-сторінки та шаблони
+    - /bin/cp -f index.php advertising.php contacts.php 404.php $DEPLOYPATH/
+    - /bin/cp -f header.php footer.php footer_bottom.php footer_bottom_only.php contact_data.php $DEPLOYPATH/
+    - /bin/cp -f send_email.php captcha.php $DEPLOYPATH/
+
+    # Статика та конфігурація
+    - /bin/cp -f styles.css scripts.js sitemap.xml robots.txt .htaccess $DEPLOYPATH/
+
+    # Директорії з ресурсами
+    - /bin/cp -Rf icons images documents mrplayer $DEPLOYPATH/
+
+    # Прибираємо застарілі файли з сервера (og-image замінено на .jpg)
+    - /bin/rm -f $DEPLOYPATH/images/og-image.png

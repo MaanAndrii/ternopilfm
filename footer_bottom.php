@@ -19,6 +19,6 @@
     </footer>
 
     <button id="scroll-to-top" class="scroll-to-top">↑</button>
-    <script src="scripts.js"></script>
+    <script src="scripts.js?v=<?php echo filemtime(__DIR__ . '/scripts.js'); ?>"></script>
 </body>
 </html>

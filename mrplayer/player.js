@@ -60,6 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
             errorDetails: details || 'Немає деталей'
         };
         errorLog.push(logEntry);
+        // Обмежуємо розмір логу, щоб він не ріс безмежно за довгу сесію
+        if (errorLog.length > 50) {
+            errorLog.shift();
+        }
         console.error("Помилку зафіксовано:", logEntry);
     }
 
@@ -231,6 +235,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         volumeSlider.value = volume;
         updateMuteIcons(volume === 0);
+        saveVolume(volume);
+    }
+
+    // === ЗБЕРЕЖЕННЯ ГУЧНОСТІ МІЖ СЕСІЯМИ ===
+    function loadSavedVolume() {
+        try {
+            const saved = parseFloat(localStorage.getItem('mrplayer_volume'));
+            return (saved >= 0 && saved <= 1) ? saved : playerConfig.initialVolume;
+        } catch (e) {
+            return playerConfig.initialVolume;
+        }
+    }
+
+    function saveVolume(volume) {
+        try {
+            localStorage.setItem('mrplayer_volume', volume);
+        } catch (e) {
+            // localStorage може бути недоступним (приватний режим) — ігноруємо
+        }
     }
 
     // === ОБРОБНИКИ ПОДІЙ ===
@@ -336,7 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
             stationSelector.style.justifyContent = 'center';
         }
 
-        volumeSlider.value = playerConfig.initialVolume;
+        // Відновлюємо збережену гучність (або початкову з конфігу)
+        const savedVolume = loadSavedVolume();
+        setVolume(savedVolume);
+        if (savedVolume > 0) {
+            lastVolume = savedVolume;
+        }
         // --- НОВА ЛОГІКА ДЛЯ ОБРОБКИ URL-ПАРАМЕТРА ---
         const urlParams = new URLSearchParams(window.location.search);
         const stationIdFromUrl = urlParams.get('station');

@@ -1,0 +1,18 @@
+# /mrplayer/ має відкривати сам плеєр (потрібно для PWA start_url)
+DirectoryIndex mRPlayer.html
+
+# Код плеєра не повинен застрягати в HTTP-кеші браузера:
+# Service Worker використовує network-first саме для цих файлів,
+# і довгий Cache-Control зробив би оновлення невидимими до тижня.
+<FilesMatch "^(sw\.js|config\.js|player\.js|mRPlayer\.html|style\.css|manifest\.json)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "no-cache, must-revalidate"
+    </IfModule>
+</FilesMatch>
+
+# Шрифти та бібліотека незмінні — кешуємо надовго
+<FilesMatch "\.(woff2|png)$|^howler\.min\.js$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "public, max-age=2592000"
+    </IfModule>
+</FilesMatch>

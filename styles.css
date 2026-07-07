@@ -50,6 +50,7 @@ body {
 
 .logo img {
     height: 50px;
+    width: auto; /* Перекриває HTML-атрибут width, зберігаючи пропорції */
 }
 
 .logo {

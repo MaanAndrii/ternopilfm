@@ -19,6 +19,35 @@ if (
     exit;
 }
 
+// --- Honeypot: боти заповнюють приховане поле, людина — ні ---
+if (!empty($_POST['website'])) {
+    // Відповідаємо як при успіху, щоб не підказувати боту, що його виявлено
+    http_response_code(200);
+    echo "Дякуємо! Ваше повідомлення відправлено. Ми зв'яжемось з вами найближчим часом.";
+    exit;
+}
+
+// --- Rate limiting: не більше 3 відправок за 10 хвилин на сесію ---
+$rateWindow = 600; // секунд
+$rateLimit  = 3;
+$now = time();
+$_SESSION['send_attempts'] = array_filter(
+    $_SESSION['send_attempts'] ?? [],
+    function ($t) use ($now, $rateWindow) { return ($now - $t) < $rateWindow; }
+);
+if (count($_SESSION['send_attempts']) >= $rateLimit) {
+    http_response_code(429);
+    echo "Забагато спроб. Будь ласка, спробуйте ще раз через кілька хвилин.";
+    exit;
+}
+
+// --- Серверна перевірка згоди на обробку персональних даних ---
+if (empty($_POST['consent'])) {
+    http_response_code(400);
+    echo "Будь ласка, надайте згоду на обробку персональних даних.";
+    exit;
+}
+
 // --- Серверна перевірка капчі ---
 if (
     !isset($_SESSION['captcha_answer']) ||
@@ -73,6 +102,9 @@ $email_headers  = "From: Сайт ternopil.fm <noreply@ternopil.fm>\r\n";
 $email_headers .= "Reply-To: $name <$email>\r\n";
 $email_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $email_headers .= "Content-Transfer-Encoding: 8bit\r\n";
+
+// Фіксуємо відправку для rate limiting
+$_SESSION['send_attempts'][] = $now;
 
 if (mail($recipient, $subject, $email_content, $email_headers)) {
     http_response_code(200);

@@ -1,0 +1,54 @@
+# ============================================
+# ternopil.fm — конфігурація Apache
+# ============================================
+
+# --- Чисті URL: /advertising -> advertising.php, /contacts -> contacts.php ---
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Редирект з .php-версії на чистий URL (щоб не було дублів для пошуковиків)
+    RewriteCond %{THE_REQUEST} \s/([a-z_]+)\.php[\s?] [NC]
+    RewriteCond %{REQUEST_URI} !^/(send_email|captcha)\.php [NC]
+    RewriteRule ^ /%1 [R=301,L]
+
+    # Внутрішня переадресація чистого URL на .php-файл
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^([a-z_]+)$ $1.php [L]
+</IfModule>
+
+# --- Сторінка помилки 404 ---
+ErrorDocument 404 /404.php
+
+# --- Заборона доступу до службових файлів ---
+<FilesMatch "^(error_log|\.gitignore|\.htaccess)$">
+    Require all denied
+</FilesMatch>
+RedirectMatch 404 /\.git
+
+# --- Security-заголовки ---
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# --- Стиснення тексту (gzip) ---
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Кешування статики в браузері ---
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/pdf "access plus 1 month"
+</IfModule>

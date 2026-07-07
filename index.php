@@ -7,7 +7,7 @@
 
     <main class="main-content-wrapper">
         <div class="container">
-            <iframe class="player-iframe" src="mrplayer/mRPlayer.html" frameborder="0" sandbox="allow-scripts allow-same-origin"></iframe>
+            <iframe class="player-iframe" src="mrplayer/mRPlayer.html" frameborder="0" title="Радіоплеєр ТРК Тернопільська хвиля"></iframe>
         </div>
     </main>
 
